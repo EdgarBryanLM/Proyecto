@@ -17,8 +17,8 @@ const AllActivities: React.FC = () => {
           <IonContent>
           <IonGrid>
               <IonRow>
-                  <IonCol>
-                      <h1>All Activitis work!</h1>
+                  <IonCol class="ion-text-center">
+                    
                   </IonCol>
               </IonRow>
           </IonGrid>
