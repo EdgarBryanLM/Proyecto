@@ -1,7 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonApp, IonContent, IonHeader, IonIcon, IonItem, IonList, IonMenu, IonMenuToggle, IonRouterOutlet, IonTitle, IonToolbar } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -21,17 +21,42 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import AllActivities from './pages/AllActivities/AllActivities';
+import AddActivity from './pages/AddActivity/AddActivity';
+import React from 'react';
+import {bodyOutline, newspaperOutline} from 'ionicons/icons';
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
+    <IonMenu side="start" contentId="scheduleAppM1">
+      <IonHeader>
+        <IonToolbar >
+          <IonTitle>Schedule App</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+        <IonList>
+          <IonMenuToggle>
+          <IonItem routerLink="/all-activities" routerDirection="none" lines="none" >
+          <IonIcon color="medium" slot="start" icon={bodyOutline}></IonIcon>
+          </IonItem>
+          </IonMenuToggle>
+
+          <IonMenuToggle>
+          <IonItem routerLink="/add-activities" routerDirection="none" lines="none" >
+          <IonIcon color="medium" slot="start" icon={newspaperOutline}></IonIcon>
+          </IonItem>
+          </IonMenuToggle>
+
+        </IonList>
+      </IonContent>
+    </IonMenu>
+      <IonRouterOutlet id="scheduleAppM1">
+        <Route path="/all-activities" component={AllActivities} exact/>
+        <Route path="/add-activities" component={AddActivity} exact/>
+        <Redirect to ="/all-activities"/>
+
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
