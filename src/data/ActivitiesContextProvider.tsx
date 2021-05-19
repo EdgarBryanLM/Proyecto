@@ -10,11 +10,19 @@ const ActivitiesContextProvider: React.FC = (props) => {
             title: "Aprender ionec",
             description: "Aplicacion",
             hour:"12:22",
-            activityType:'hobby',
-            imageUrl:'/assents/imagenes/work.jpg',
+            activityType:'work',
+            imageUrl:'/assets/imagenes/work.jpg',
             isCompleted: false
-            
 
+        },
+        {
+            id: Math.random().toString(),
+            title: "Aprender nada",
+            description: "Salario",
+            hour:"12:00",
+            activityType:'rest',
+            imageUrl:'/assets/imagenes/rest.jpg',
+            isCompleted: false
 
         }
     ]
@@ -27,16 +35,16 @@ const addActivity=(title: string,description:string,hour:string,activityType: Ac
     let imageUrl = '';
     switch(activityType) {
         case 'rest':
-            imageUrl = '/assets/images/rest.jpg'
+            imageUrl = '/assets/imagenes/rest.jpg'
             break;
         case 'hobby':
-            imageUrl = '/assets/images/hobby.jpg'
+            imageUrl = '/assets/imagenes/hobby.jpg'
             break;
         case 'work':
-            imageUrl = '/assets/images/work.jpg'
+            imageUrl = '/assets/imagenes/work.jpg'
             break;
         default:
-            imageUrl = '/assets/images/work.jpg'
+            imageUrl = '/assets/imagenes/work.jpg'
             break;
         };
 
