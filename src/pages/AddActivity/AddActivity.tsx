@@ -2,7 +2,7 @@ import React,{useRef,useContext, useState}from 'react';
 import { IonButton, IonButtons, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonInput, IonItem, IonLabel, IonMenuButton, IonPage, IonRow, IonSegment, IonSegmentButton, IonTitle, IonToast, IonToolbar } from '@ionic/react';
 import {useHistory} from 'react-router-dom'
 import activitiesContext, { ActivityType } from '../../data/activities-context';
-import { Plugins,Toast } from '@capacitor/core';
+import { Plugins,Toast,Device } from '@capacitor/core';
 
 
 const AddActivity: React.FC = () => {
@@ -23,7 +23,10 @@ const AddActivity: React.FC = () => {
           text: 'Agregado correctamente',
         });
       };
+
+     
     
+
     const addActivity =()=>{
         const title = titleInput.current?.value as string;
         const description = descriptionInput.current?.value as string;
@@ -34,6 +37,7 @@ const AddActivity: React.FC = () => {
         if(title && description && typeAct && startHour){
             activitiesCtxt.addActivity(title,description,startHour,typeAct);
            confirmado();
+           
             history.replace('/all-activities');
         }
     };
