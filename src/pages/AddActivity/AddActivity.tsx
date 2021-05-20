@@ -2,15 +2,14 @@ import React,{useRef,useContext, useState}from 'react';
 import { IonButton, IonButtons, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonInput, IonItem, IonLabel, IonMenuButton, IonPage, IonRow, IonSegment, IonSegmentButton, IonTitle, IonToast, IonToolbar } from '@ionic/react';
 import {useHistory} from 'react-router-dom'
 import activitiesContext, { ActivityType } from '../../data/activities-context';
-import { Toast } from '@capacitor/toast';
-import { Plugins } from '@capacitor/core';
+import { Plugins,Toast } from '@capacitor/core';
 
 
 const AddActivity: React.FC = () => {
     //Variable que nos ayuda a poder manejar nuestra navegacion
     //de paginas
     const history = useHistory();
-
+    const { AnyPlugin } = Plugins;
     const titleInput = useRef<HTMLIonInputElement>(null);
     const descriptionInput = useRef<HTMLIonInputElement>(null);
     const typeInput = useRef<HTMLIonSegmentElement>(null);
@@ -34,8 +33,7 @@ const AddActivity: React.FC = () => {
 
         if(title && description && typeAct && startHour){
             activitiesCtxt.addActivity(title,description,startHour,typeAct);
-            confirmado;
-            console.log("Hola"+confirmado);
+           confirmado();
             history.replace('/all-activities');
         }
     };
