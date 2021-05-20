@@ -2,14 +2,15 @@ import React,{useRef,useContext, useState}from 'react';
 import { IonButton, IonButtons, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonInput, IonItem, IonLabel, IonMenuButton, IonPage, IonRow, IonSegment, IonSegmentButton, IonTitle, IonToast, IonToolbar } from '@ionic/react';
 import {useHistory} from 'react-router-dom'
 import activitiesContext, { ActivityType } from '../../data/activities-context';
-import { Plugins,Toast,Device } from '@capacitor/core';
+import  Toast  from '../../hooks/Toast';
+
 
 
 const AddActivity: React.FC = () => {
     //Variable que nos ayuda a poder manejar nuestra navegacion
     //de paginas
     const history = useHistory();
-    const { AnyPlugin } = Plugins;
+  
     const titleInput = useRef<HTMLIonInputElement>(null);
     const descriptionInput = useRef<HTMLIonInputElement>(null);
     const typeInput = useRef<HTMLIonSegmentElement>(null);
@@ -18,12 +19,8 @@ const AddActivity: React.FC = () => {
     //En esta parte obtenemos nuestros diferentes datos obtenidos con los Inputs
     const activitiesCtxt = useContext(activitiesContext);
     const [toastMsg, setToastMsg] = useState<string>('');
-    const confirmado = async () => {
-        await Toast.show({
-          text: 'Agregado correctamente',
-        });
-      };
-
+    
+    
      
     
 
@@ -36,9 +33,11 @@ const AddActivity: React.FC = () => {
 
         if(title && description && typeAct && startHour){
             activitiesCtxt.addActivity(title,description,startHour,typeAct);
-           confirmado();
            
+           Toast();
             history.replace('/all-activities');
+        }else{
+            Toast();
         }
     };
 
