@@ -1,12 +1,11 @@
-import React,{useRef,useContext}from 'react';
-import { IonButton, IonButtons, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonInput, IonItem, IonLabel, IonMenuButton, IonPage, IonRow, IonSegment, IonSegmentButton, IonTitle, IonToolbar } from '@ionic/react';
+import React,{useRef,useContext, useState}from 'react';
+import { IonButton, IonButtons, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonInput, IonItem, IonLabel, IonMenuButton, IonPage, IonRow, IonSegment, IonSegmentButton, IonTitle, IonToast, IonToolbar } from '@ionic/react';
 import {useHistory} from 'react-router-dom'
-import activitiesContext, { ActivityType } from '../../data/activities-contexr';
+import activitiesContext, { ActivityType } from '../../data/activities-context';
 const AddActivity: React.FC = () => {
     //Variable que nos ayuda a poder manejar nuestra navegacion
     //de paginas
     const history = useHistory();
-
 
     const titleInput = useRef<HTMLIonInputElement>(null);
     const descriptionInput = useRef<HTMLIonInputElement>(null);
@@ -15,6 +14,8 @@ const AddActivity: React.FC = () => {
 
     //En esta parte obtenemos nuestros diferentes datos obtenidos con los Inputs
     const activitiesCtxt = useContext(activitiesContext);
+    const [toastMsg, setToastMsg] = useState<string>('');
+    
     const addActivity =()=>{
         const title = titleInput.current?.value as string;
         const description = descriptionInput.current?.value as string;
@@ -24,11 +25,20 @@ const AddActivity: React.FC = () => {
 
         if(title && description && typeAct && startHour){
             activitiesCtxt.addActivity(title,description,startHour,typeAct);
+            setToastMsg("Actividad agregada");
             history.replace('/all-activities');
         }
     };
 
     return (
+
+        <React.Fragment>
+
+      <IonToast isOpen={!!toastMsg} message={toastMsg} duration={4000} color="medium" onDidDismiss={() => setToastMsg("")}/>
+
+    
+
+
       <IonPage>
           <IonHeader>
               <IonToolbar>
@@ -45,10 +55,10 @@ const AddActivity: React.FC = () => {
                   <IonCol className="ion-text-center">
                       <IonSegment ref={typeInput}>
                           <IonSegmentButton value="work">
-                            <IonLabel>Work</IonLabel>
+                            <IonLabel>Trabajar</IonLabel>
                           </IonSegmentButton>
                           <IonSegmentButton value="rest">
-                            <IonLabel>Rest</IonLabel>
+                            <IonLabel>Descanso</IonLabel>
                           </IonSegmentButton>
                           <IonSegmentButton value="hobby">
                             <IonLabel>Hobby</IonLabel>
@@ -60,7 +70,7 @@ const AddActivity: React.FC = () => {
               <IonRow>
                   <IonCol>
                   <IonItem>
-                      <IonLabel position="floating">Activity Title</IonLabel>
+                      <IonLabel position="floating">Titulo de la Actividad</IonLabel>
                       <IonInput ref={titleInput} type="text"></IonInput>
                   </IonItem>
                   </IonCol>
@@ -68,7 +78,7 @@ const AddActivity: React.FC = () => {
               <IonRow>
                   <IonCol>
                   <IonItem>
-                      <IonLabel position="floating">Activity Description</IonLabel>
+                      <IonLabel position="floating">Descripcion</IonLabel>
                       <IonInput ref={descriptionInput} type="text"></IonInput>
                   </IonItem>
                   </IonCol>
@@ -76,7 +86,7 @@ const AddActivity: React.FC = () => {
               <IonRow>
                   <IonCol>
                   <IonItem>
-                      <IonLabel position="floating">Starting hour</IonLabel>
+                      <IonLabel position="floating">Comienza a las:</IonLabel>
                      <IonDatetime ref={hourInput} displayFormat="h:mm A" pickerFormat="h:mm A" value={new Date().toISOString()}></IonDatetime>
                   </IonItem>
                   </IonCol>
@@ -91,7 +101,7 @@ const AddActivity: React.FC = () => {
       </IonContent>
       </IonPage>
 
-      
+      </React.Fragment>
     );
   };
   

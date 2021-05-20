@@ -1,67 +1,47 @@
 import React, { useState } from 'react';
-import ActivitiesContext, { Activity, ActivitiesContectModel, ActivityType } from './activities-contexr';
+import ActivitiesContext, { Activity, ActivitiesContextModel, ActivityType } from './activities-context';
 
 const ActivitiesContextProvider: React.FC = (props) => {
 
-    const [activities,setActivities]= useState<Activity[]>(
-        [
-        {
-            id: Math.random().toString(),
-            title: "Aprender ionec",
-            description: "Aplicacion",
-            hour:"12:22",
-            activityType:'work',
-            imageUrl:'/assets/imagenes/work.jpg',
-            isCompleted: false
-
-        },
-        {
-            id: Math.random().toString(),
-            title: "Aprender nada",
-            description: "Salario",
-            hour:"12:00",
-            activityType:'rest',
-            imageUrl:'/assets/imagenes/rest.jpg',
-            isCompleted: false
-
-        }
-    ]
-    );
+    const [activities, setActivities] = useState<Activity[]>([
         
+    ]);
 
-    
-
-const addActivity=(title: string,description:string,hour:string,activityType: ActivityType) => {
-    let imageUrl = '';
-    switch(activityType) {
-        case 'rest':
-            imageUrl = '/assets/imagenes/rest.jpg'
-            break;
-        case 'hobby':
-            imageUrl = '/assets/imagenes/hobby.jpg'
-            break;
-        case 'work':
-            imageUrl = '/assets/imagenes/work.jpg'
-            break;
-        default:
-            imageUrl = '/assets/imagenes/work.jpg'
-            break;
+    const addActivity = (title: string, description: string,date:string, activityType: ActivityType) => {
+        let imageUrl = '';
+        switch(activityType) {
+            case 'rest':
+                imageUrl = '/assets/imagenes/rest.jpg'
+                break;
+            case 'hobby':
+                imageUrl = '/assets/imagenes/hobby.jpg'
+                break;
+            case 'work':
+                imageUrl = '/assets/imagenes/work.jpg'
+                break;
+            default:
+                imageUrl = '/assets/imagenes/work.jpg'
+                break;
         };
 
-    const newActivity:Activity={
-        id:Math.random().toString(),
-        title,
-        description,
-        hour,
-        activityType,
-        imageUrl,
-        isCompleted: false
+        const activityDate = new Date();
+        const hour = date;
+
+        const addActivity: Activity = {
+            id: Math.random().toString(),
+            title,
+            description,
+            hour,
+            activityType,
+            imageUrl,
+            isCompleted: false
+        };
+
+        setActivities(currActivities => {
+            return [...currActivities, addActivity]
+        })
     };
 
-    setActivities(currActivities =>{
-        return[...currActivities,newActivity];
-    });
-};
     const completeActivity = (activityId: string) => {
         setActivities(currActivities => {
             const updatedActivities = [...currActivities];
@@ -70,20 +50,19 @@ const addActivity=(title: string,description:string,hour:string,activityType: Ac
             updatedActivities[selectedActivityIndex] = updatedActivity;
             return updatedActivities;
         });
-};
+    };
 
+    const activitiesContext: ActivitiesContextModel = {
+        activities,
+        addActivity,
+        completeActivity
+    };
 
-const activitiesContext: ActivitiesContectModel = {
-    activities,
-    addActivity,
-    completeActivity
-};
-
-return (
-    <ActivitiesContext.Provider value={activitiesContext}>
-        {props.children}
-    </ActivitiesContext.Provider>
-);
+    return (
+        <ActivitiesContext.Provider value={activitiesContext}>
+            {props.children}
+        </ActivitiesContext.Provider>
+    );
 };
 
 export default ActivitiesContextProvider;

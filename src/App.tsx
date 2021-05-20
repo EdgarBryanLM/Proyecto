@@ -1,5 +1,5 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonContent, IonHeader, IonIcon, IonItem, IonList, IonMenu, IonMenuToggle, IonRouterOutlet, IonTitle, IonToolbar } from '@ionic/react';
+import { IonApp, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonRouterOutlet, IonTitle, IonToolbar } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
 
@@ -33,7 +33,7 @@ const App: React.FC = () => (
     <IonMenu side="start" contentId="scheduleAppM1">
       <IonHeader>
         <IonToolbar >
-          <IonTitle>Schedule App</IonTitle>
+          <IonTitle>Menu</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -41,12 +41,14 @@ const App: React.FC = () => (
           <IonMenuToggle>
           <IonItem routerLink="/all-activities" routerDirection="none" lines="none" >
           <IonIcon color="medium" slot="start" icon={bodyOutline}></IonIcon>
+          <IonLabel>Actividades</IonLabel>
           </IonItem>
           </IonMenuToggle>
 
           <IonMenuToggle>
           <IonItem routerLink="/add-activities" routerDirection="none" lines="none" >
           <IonIcon color="medium" slot="start" icon={newspaperOutline}></IonIcon>
+          <IonLabel>Agregar Actividad</IonLabel>
           </IonItem>
           </IonMenuToggle>
 
