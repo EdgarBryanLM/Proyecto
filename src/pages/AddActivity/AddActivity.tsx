@@ -2,6 +2,10 @@ import React,{useRef,useContext, useState}from 'react';
 import { IonButton, IonButtons, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonInput, IonItem, IonLabel, IonMenuButton, IonPage, IonRow, IonSegment, IonSegmentButton, IonTitle, IonToast, IonToolbar } from '@ionic/react';
 import {useHistory} from 'react-router-dom'
 import activitiesContext, { ActivityType } from '../../data/activities-context';
+import { Toast } from '@capacitor/toast';
+import { Plugins } from '@capacitor/core';
+
+
 const AddActivity: React.FC = () => {
     //Variable que nos ayuda a poder manejar nuestra navegacion
     //de paginas
@@ -15,6 +19,11 @@ const AddActivity: React.FC = () => {
     //En esta parte obtenemos nuestros diferentes datos obtenidos con los Inputs
     const activitiesCtxt = useContext(activitiesContext);
     const [toastMsg, setToastMsg] = useState<string>('');
+    const confirmado = async () => {
+        await Toast.show({
+          text: 'Agregado correctamente',
+        });
+      };
     
     const addActivity =()=>{
         const title = titleInput.current?.value as string;
@@ -25,7 +34,8 @@ const AddActivity: React.FC = () => {
 
         if(title && description && typeAct && startHour){
             activitiesCtxt.addActivity(title,description,startHour,typeAct);
-            setToastMsg("Actividad agregada");
+            confirmado;
+            console.log("Hola"+confirmado);
             history.replace('/all-activities');
         }
     };
@@ -33,9 +43,9 @@ const AddActivity: React.FC = () => {
     return (
 
         <React.Fragment>
-
-      <IonToast isOpen={!!toastMsg} message={toastMsg} duration={4000} color="medium" onDidDismiss={() => setToastMsg("")}/>
-
+{
+     // <IonToast isOpen={!!toastMsg} message={toastMsg} duration={90000} color="medium" onDidDismiss={() => setToastMsg("")}/>
+}
     
 
 
