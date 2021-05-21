@@ -21,8 +21,6 @@ const AddActivity: React.FC = () => {
     const [toastMsg, setToastMsg] = useState<string>('');
     
     
-     
-    
 
     const addActivity =()=>{
         const title = titleInput.current?.value as string;
@@ -33,11 +31,11 @@ const AddActivity: React.FC = () => {
 
         if(title && description && typeAct && startHour){
             activitiesCtxt.addActivity(title,description,startHour,typeAct);
-           
-           Toast();
+           console.log("Se incertaron todos los elementos");
+           Toast("Actividad agregada correctamente");
             history.replace('/all-activities');
         }else{
-            Toast();
+            Toast("Ingrese todos los campos");
         }
     };
 

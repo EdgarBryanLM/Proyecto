@@ -1,8 +1,8 @@
 import { Toast } from '@capacitor/core';
 
-const useToast = async () => {
+const useToast = async (mensaje:string) => {
   await Toast.show({
-    text: 'No se encontraron búsquedas relacionadas',
+    text: mensaje,
   });
 };
 

@@ -1,7 +1,9 @@
 import React,{useRef,useContext, useState}from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonButtons, IonMenuButton, IonRow, IonCol, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonButton, IonModal, IonIcon, IonLabel, IonInput } from '@ionic/react';
 import { Plugins,Toast,Device } from '@capacitor/core';
+
 const celular: React.FC = () => {
+    const { Device } = Plugins;
     const { AnyPlugin } = Plugins;
     const logDeviceInfo = async () => {
         const info = await Device.getInfo();
