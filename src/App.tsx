@@ -24,7 +24,7 @@ import './theme/variables.css';
 import AllActivities from './pages/AllActivities/AllActivities';
 import AddActivity from './pages/AddActivity/AddActivity';
 import React from 'react';
-import {bodyOutline, newspaperOutline} from 'ionicons/icons';
+import {bodyOutline, informationCircle, newspaperOutline} from 'ionicons/icons';
 import ActivitiesContextProvider from './data/ActivitiesContextProvider';
 import Celular from './pages/infoCel/celular';
 
@@ -55,7 +55,7 @@ const App: React.FC = () => (
 
           <IonMenuToggle>
           <IonItem routerLink="/celular" routerDirection="none" lines="none" >
-          <IonIcon color="medium" slot="start" icon={bodyOutline}></IonIcon>
+          <IonIcon color="medium" slot="start" icon={informationCircle}></IonIcon>
           <IonLabel>Informacion</IonLabel>
           </IonItem>
           </IonMenuToggle>

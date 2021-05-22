@@ -1,16 +1,20 @@
 import React,{useRef,useContext, useState}from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonButtons, IonMenuButton, IonRow, IonCol, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonButton, IonModal, IonIcon, IonLabel, IonInput } from '@ionic/react';
-import { Plugins,Toast,Device } from '@capacitor/core';
+import Toast from "../../hooks/Toast";
+import Device from "../../hooks/Device";
+import { Plugins } from '@capacitor/core';
+
 
 const celular: React.FC = () => {
     const { Device } = Plugins;
-    const { AnyPlugin } = Plugins;
-    const logDeviceInfo = async () => {
+  
+    const caracteristicas = async () => {
         const info = await Device.getInfo();
-      
+        Toast("appBuild:"+info.appBuild+" appId:"+info.appId+" appName:"+info.appName+" appVersion:"+info.appVersion+ " isVirtual:"+info.isVirtual+" manufacturer:"+info.manufacturer+" plataform:"+info.platform);
         console.log(info);
-      };
-
+    }
+  
+    
     return (
         <IonPage>
         <IonHeader>
@@ -25,15 +29,7 @@ const celular: React.FC = () => {
         <IonContent>
         <IonGrid>
            
-            <IonRow>
-                <IonCol>
-                <IonItem>
-                <IonCardContent >
-                Nombre: {}
-                </IonCardContent>
-                </IonItem>
-                </IonCol>
-            </IonRow>
+       
             <IonRow>
                 <IonCol>
                 <IonItem>
@@ -43,7 +39,12 @@ const celular: React.FC = () => {
                 </IonCol>
             </IonRow>
            
-            
+            <IonRow>
+                  <IonCol className= "ion-text-center ion-margin-top">
+                      <IonButton onClick={caracteristicas} expand="block" fill="outline">Caracteristicas</IonButton>
+
+                  </IonCol>
+              </IonRow>
          
         </IonGrid>
     </IonContent>

@@ -3,6 +3,8 @@ import { IonButton, IonButtons, IonCol, IonContent, IonDatetime, IonGrid, IonHea
 import {useHistory} from 'react-router-dom'
 import activitiesContext, { ActivityType } from '../../data/activities-context';
 import  Toast  from '../../hooks/Toast';
+import  Haptics  from '../../hooks/Haptics';
+
 
 
 
@@ -10,6 +12,7 @@ const AddActivity: React.FC = () => {
     //Variable que nos ayuda a poder manejar nuestra navegacion
     //de paginas
     const history = useHistory();
+    
   
     const titleInput = useRef<HTMLIonInputElement>(null);
     const descriptionInput = useRef<HTMLIonInputElement>(null);
@@ -35,7 +38,9 @@ const AddActivity: React.FC = () => {
            Toast("Actividad agregada correctamente");
             history.replace('/all-activities');
         }else{
+          
             Toast("Ingrese todos los campos");
+            Haptics();
         }
     };
 
