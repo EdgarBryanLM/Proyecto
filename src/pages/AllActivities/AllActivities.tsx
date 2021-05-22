@@ -42,7 +42,7 @@ const AllActivities: React.FC = () => {
                                 <IonCard>
                                     <img src={activity.imageUrl} alt="Activity"/>
                                     <IonCardHeader>
-                                        <IonCardSubtitle>{activity.hour}</IonCardSubtitle>
+                                        <IonCardSubtitle>HORA: {activity.hour}</IonCardSubtitle>
                                         <IonCardTitle>{activity.title}</IonCardTitle>
                                     </IonCardHeader>
                                     <IonCardContent>

@@ -6,8 +6,6 @@ import  Toast  from '../../hooks/Toast';
 import  Haptics  from '../../hooks/Haptics';
 
 
-
-
 const AddActivity: React.FC = () => {
     //Variable que nos ayuda a poder manejar nuestra navegacion
     //de paginas
