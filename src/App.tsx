@@ -1,7 +1,8 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonRouterOutlet, IonTitle, IonToolbar } from '@ionic/react';
+import { IonApp, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonRouterOutlet, IonTitle, IonToggle, IonToolbar } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-
+import "./theme/variables.css";
+import { moon } from "ionicons/icons";
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -27,7 +28,9 @@ import React from 'react';
 import {bodyOutline, informationCircle, newspaperOutline} from 'ionicons/icons';
 import ActivitiesContextProvider from './data/ActivitiesContextProvider';
 import Celular from './pages/infoCel/celular';
-
+const toggleDarkModeHandler = () => {
+  document.body.classList.toggle("dark");
+};
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
@@ -59,6 +62,20 @@ const App: React.FC = () => (
           <IonLabel>Informacion</IonLabel>
           </IonItem>
           </IonMenuToggle>
+
+          <IonMenuToggle>
+          <IonList className="ion-margin-top">
+          <IonItem>
+            <IonIcon slot="start" icon={moon} />
+            <IonLabel>Dark Mode</IonLabel>
+            <IonToggle
+              slot="end"
+              name="darkMode"
+              onIonChange={toggleDarkModeHandler}
+            />
+          </IonItem>
+        </IonList>
+        </IonMenuToggle>
 
         </IonList>
       </IonContent>
