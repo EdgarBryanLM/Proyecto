@@ -1,8 +1,17 @@
-import { Capacitor,Plugins  } from '@capacitor/core';
-const { Haptics } = Plugins;
-const hapticsVibrate = async () => {
-  await Haptics.vibrate();
-  
-};
+import { Plugins, HapticsImpactStyle } from '@capacitor/core';
 
-    export default hapticsVibrate;
+const { Haptics } = Plugins;
+
+export class HapticsExample {
+  hapticsImpact(style = HapticsImpactStyle.Heavy) {
+    Haptics.impact({
+      style: style,
+    });
+    
+  }
+}
+
+
+  
+
+    export default HapticsExample;

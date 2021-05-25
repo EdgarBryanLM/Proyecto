@@ -10,7 +10,7 @@ const celular: React.FC = () => {
   
     const caracteristicas = async () => {
         const info = await Device.getInfo();
-        Toast("appBuild:"+info.appBuild+" appId:"+info.appId+" appName:"+info.appName+" appVersion:"+info.appVersion+ " isVirtual:"+info.isVirtual+" manufacturer:"+info.manufacturer+" plataform:"+info.platform);
+        Toast("Model:"+info.model+" Plataform:"+info.platform+" appName:"+info.appName+" appVersion:"+info.appVersion+ " isVirtual:"+info.isVirtual+" manufacturer:"+info.manufacturer+" plataform:"+info.platform);
         console.log(info);
     }
   
@@ -41,7 +41,7 @@ const celular: React.FC = () => {
            
             <IonRow>
                   <IonCol className= "ion-text-center ion-margin-top">
-                      <IonButton onClick={caracteristicas} expand="block" fill="outline">Caracteristicas</IonButton>
+                      <IonButton onClick={caracteristicas} expand="block" fill="outline">Caracteristicas del Celular</IonButton>
 
                   </IonCol>
               </IonRow>
