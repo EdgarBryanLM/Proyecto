@@ -4,6 +4,7 @@ import {useHistory} from 'react-router-dom'
 import activitiesContext, { ActivityType } from '../../data/activities-context';
 import  Toast  from '../../hooks/Toast';
 import  Haptics  from '../../hooks/Haptics';
+import  Dialog  from '../../hooks/Dialog';
 
 
 const AddActivity: React.FC = () => {
@@ -37,7 +38,7 @@ const AddActivity: React.FC = () => {
             history.replace('/all-activities');
         }else{
           
-            Toast("Ingrese todos los campos");
+           Dialog();
             Haptics();
            
         }
