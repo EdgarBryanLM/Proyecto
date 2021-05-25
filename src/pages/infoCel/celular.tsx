@@ -1,16 +1,15 @@
 import React,{useRef,useContext, useState}from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonButtons, IonMenuButton, IonRow, IonCol, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonItem, IonButton, IonModal, IonIcon, IonLabel, IonInput } from '@ionic/react';
 import Toast from "../../hooks/Toast";
-import Device from "../../hooks/Device";
-import { Plugins } from '@capacitor/core';
+import { Device } from '@capacitor/device';
 
 
 const celular: React.FC = () => {
-    const { Device } = Plugins;
+  
   
     const caracteristicas = async () => {
         const info = await Device.getInfo();
-        Toast("Model:"+info.model+" Plataform:"+info.platform+" appName:"+info.appName+" appVersion:"+info.appVersion+ " isVirtual:"+info.isVirtual+" manufacturer:"+info.manufacturer+" plataform:"+info.platform);
+        Toast("Model:"+info.model+" Plataform:"+info.platform+" isVirtual:"+info.isVirtual+" manufacturer:"+info.manufacturer+" plataform:"+info.platform);
         console.log(info);
     }
   

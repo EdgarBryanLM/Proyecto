@@ -1,11 +1,11 @@
-import { Plugins } from '@capacitor/core';
-const { Device } = Plugins;
+import { Device } from '@capacitor/device';
+
 
 const caracteristicas = async () => {
     const info = await Device.getInfo();
-console.log(info);
-    return await Device.getInfo();
-}
+  
+    console.log(info);
+  };
 
 export default caracteristicas;
 

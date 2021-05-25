@@ -3,7 +3,7 @@ import { IonButton, IonButtons, IonCol, IonContent, IonDatetime, IonGrid, IonHea
 import {useHistory} from 'react-router-dom'
 import activitiesContext, { ActivityType } from '../../data/activities-context';
 import  Toast  from '../../hooks/Toast';
-import  hapticsVibrate  from '../../hooks/Haptics';
+import  Haptics  from '../../hooks/Haptics';
 
 
 const AddActivity: React.FC = () => {
@@ -38,6 +38,7 @@ const AddActivity: React.FC = () => {
         }else{
           
             Toast("Ingrese todos los campos");
+            Haptics();
            
         }
     };

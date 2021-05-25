@@ -1,17 +1,7 @@
-import { Plugins, HapticsImpactStyle } from '@capacitor/core';
+import { Haptics, HapticsImpactStyle } from '@capacitor/haptics';
 
-const { Haptics } = Plugins;
+const hapticsImpactLight = async () => {
+  await Haptics.impact({ style: HapticsImpactStyle.Light });
+};
 
-export class HapticsExample {
-  hapticsImpact(style = HapticsImpactStyle.Heavy) {
-    Haptics.impact({
-      style: style,
-    });
-    
-  }
-}
-
-
-  
-
-    export default HapticsExample;
+    export default hapticsImpactLight;

@@ -1,4 +1,4 @@
-import { Toast } from '@capacitor/core';
+import { Toast } from '@capacitor/toast';
 
 const useToast = async (mensaje:string) => {
   await Toast.show({
